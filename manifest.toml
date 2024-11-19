@@ -36,15 +36,14 @@ ram.runtime = "50M"
     type = "group"
     default = "visitors"
 
-
 [resources]
 
-    [resources.sources]
-
     [resources.sources.main]
-    url = "https://github.com/Forceu/Gokapi/releases/download/v1.9.2/gokapi-linux_amd64.zip"
-    sha256 = "bc79d7548ba6d1230e0038898210941c05ce87ea7b1704b812daefa6278175a2"
-    rename = "gokapi"
+    in_subdir = false
+    amd64.url = "https://github.com/Forceu/Gokapi/releases/download/v1.9.2/gokapi-linux_amd64.zip"
+    amd64.sha256 = "bc79d7548ba6d1230e0038898210941c05ce87ea7b1704b812daefa6278175a2"
+    arm64.url = "https://github.com/Forceu/Gokapi/releases/download/v1.9.2/gokapi-linux_arm64.zip"
+    arm64.sha256 = "de5674801a4c322fb8cba2f9dc3fef0e334539b8576bda867b0dae3dc3b685fb"
 
     autoupdate.strategy = "latest_github_tag"
 
