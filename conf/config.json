@@ -4,7 +4,7 @@
     "SaltAdmin": "",
     "SaltFiles": "",
     "Username": "__ADMIN__",
-    "Password": "",
+    "Password": "__PASSWORD__",
     "HeaderKey": "",
     "OauthProvider": "",
     "OAuthClientId": "",
