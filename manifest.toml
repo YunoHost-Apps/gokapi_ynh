@@ -67,7 +67,7 @@ ram.runtime = "50M"
 
     [resources.permissions]
     main.url = "/"
-    admin.allowed = "visitors"
+    main.allowed = "visitors"
 
     upload.show_tile = false
     upload.url = "re:_/(admin|apiKeys|logs|uploadChunk|uploadStatus)"
