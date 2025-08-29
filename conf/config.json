@@ -1,7 +1,7 @@
 {
   "Authentication": {
     "Method": 3,
-    "SaltFiles": "wH6m1wICIDPiOfRWIHVMonCjXAFK18",
+    "SaltFiles": "",
     "OnlyRegisteredUsers": false
   },
   "Port": "127.0.0.1:__PORT__",
