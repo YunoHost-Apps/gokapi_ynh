@@ -70,6 +70,6 @@ ram.runtime = "50M"
     main.allowed = "visitors"
 
     upload.show_tile = false
-    upload.url = "re:_/(admin|apiKeys|logs|uploadChunk|uploadStatus)"
+    upload.url = "re:/(admin|apiKeys|logs|uploadChunk|uploadStatus)"
 
     [resources.ports]
