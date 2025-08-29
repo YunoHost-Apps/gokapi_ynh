@@ -35,8 +35,9 @@ ram.runtime = "50M"
     type = "domain"
 
     [install.init_upload_permission]
+    ask = "Which group will be authorized to upload?"
     type = "group"
-    default = "users"
+    default = "all_users"
 
 [resources]
 
@@ -66,6 +67,7 @@ ram.runtime = "50M"
 
     [resources.permissions]
     main.url = "/"
+    admin.allowed = "visitors"
 
     upload.show_tile = false
     upload.url = "re:_/(admin|apiKeys|logs|uploadChunk|uploadStatus)"
