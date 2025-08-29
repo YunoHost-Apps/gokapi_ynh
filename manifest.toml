@@ -34,15 +34,9 @@ ram.runtime = "50M"
     [install.domain]
     type = "domain"
 
-    [install.init_main_permission]
+    [install.init_upload_permission]
     type = "group"
-    default = "visitors"
-
-    [install.admin]
-    type = "user"
-
-    [install.password]
-    type = "password"
+    default = "users"
 
 [resources]
 
@@ -72,5 +66,8 @@ ram.runtime = "50M"
 
     [resources.permissions]
     main.url = "/"
+
+    upload.show_tile = false
+    upload.url = "re:_/(admin|apiKeys|logs|uploadChunk|uploadStatus)"
 
     [resources.ports]
