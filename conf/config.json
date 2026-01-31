@@ -18,7 +18,7 @@
   "ServerUrl": "https://__DOMAIN____PATH__",
   "RedirectUrl": "https://__DOMAIN____PATH__/login",
   "PublicName": "Gokapi",
-  "DataDir": "data",
+  "DataDir": "__DATA_DIR__/data",
   "DatabaseUrl": "sqlite://__DATA_DIR__/gokapi.sqlite",
   "ConfigVersion": 22,
   "MaxFileSizeMB": 102400,
@@ -38,3 +38,4 @@
   "IncludeFilename": false
 
 }
+
