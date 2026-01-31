@@ -28,9 +28,6 @@ ynh_config_add --template="config.json" --destination="$install_dir/config.json"
 chown "$app:$app" "$install_dir/config.json"
 
 $install_dir/gokapi --config $install_dir/config.json --deployment-password $password
-ynh_safe_rm "$data_dir/gokapi.sqlite"
-ynh_safe_rm "$data_dir/gokapi.sqlite-shm"
-ynh_safe_rm "$data_dir/gokapi.sqlite-wal"
 
 #=================================================
 # SYSTEM CONFIGURATION
