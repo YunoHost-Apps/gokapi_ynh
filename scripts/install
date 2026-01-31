@@ -27,7 +27,7 @@ ynh_config_add --template="config.json" --destination="$install_dir/config.json"
 
 chown "$app:$app" "$install_dir/config.json"
 
-$install_dir/gokapi --config $install_dir/config.json --deployment-password $password
+ynh_exec_as_app $install_dir/gokapi --config $install_dir/config.json --deployment-password $password
 
 #=================================================
 # SYSTEM CONFIGURATION
