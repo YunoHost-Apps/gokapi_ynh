@@ -12,23 +12,7 @@ source /usr/share/yunohost/helpers
 #=================================================
 ynh_script_progression "Stopping $app's systemd service..."
 
-ynh_systemctl --service="$app" --action="stop"
-
-#=================================================
-# ENSURE DOWNWARD COMPATIBILITY
-#=================================================
-ynh_script_progression "Ensuring downward compatibility..."
-
-#=================================================
-# DOWNLOAD, CHECK AND UNPACK SOURCE
-#=================================================
-ynh_script_progression "Upgrading source files..."
-
-# Download, check integrity, uncompress and patch the source from manifest.toml
-ynh_setup_source --dest_dir="$install_dir" --full_replace --keep="config.json"
-
-mv $install_dir/gokapi-* $install_dir/gokapi
-chmod +x $install_dir/gokapi
+ynh_systemctl --service="$app" --action="stop" --wait_until="Shutting down..."
 
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
@@ -42,11 +26,35 @@ ynh_config_add_systemd
 yunohost service add "$app" --description="Lightweight server to share files" --log="/var/log/$app/$app.log"
 
 #=================================================
+# DOWNLOAD, CHECK AND UNPACK SOURCE
+#=================================================
+if if ynh_app_upgrading_from_version_before 2.2.2~ynh1; then
+    ynh_script_progression "Moving data directory to new location..."
+    mv $install_dir/data/* $data_dir/data/
+    ynh_safe_rm $install_dir/data
+
+    ynh_script_progression "Running intermediate upgrade step..."
+    ynh_setup_source --dest_dir="$install_dir" --source_id="intermediate"
+
+    ynh_systemctl --service="$app" --action="start" --wait_until="Webserver can be accessed at"
+    ynh_systemctl --service="$app" --action="stop" --wait_until="Shutting down..."
+fi
+
+ynh_script_progression "Upgrading source files..."
+
+# Download, check integrity, uncompress and patch the source from manifest.toml
+ynh_setup_source --dest_dir="$install_dir"
+
+mv $install_dir/gokapi-* $install_dir/gokapi
+chmod +x $install_dir/gokapi
+
+
+#=================================================
 # START SYSTEMD SERVICE
 #=================================================
 ynh_script_progression "Starting $app's systemd service..."
 
-ynh_systemctl --service="$app" --action="start"
+ynh_systemctl --service="$app" --action="start" --wait_until="Webserver can be accessed at"
 
 #=================================================
 # END OF SCRIPT
