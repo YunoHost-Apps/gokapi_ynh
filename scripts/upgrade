@@ -35,6 +35,8 @@ if ynh_app_upgrading_from_version_before 2.2.2~ynh1; then
 
     ynh_script_progression "Running intermediate upgrade step..."
     ynh_setup_source --dest_dir="$install_dir" --source_id="intermediate"
+    ynh_safe_rm $install_dir/gokapi
+    mv $install_dir/gokapi-* $install_dir/gokapi
 
     ynh_systemctl --service="$app" --action="start" --log_path="systemd" --wait_until="Webserver can be accessed at"
     ynh_systemctl --service="$app" --action="stop" --log_path="systemd" --wait_until="Shutting down..."
@@ -45,9 +47,8 @@ ynh_script_progression "Upgrading source files..."
 # Download, check integrity, uncompress and patch the source from manifest.toml
 ynh_setup_source --dest_dir="$install_dir"
 
+ynh_safe_rm $install_dir/gokapi
 mv $install_dir/gokapi-* $install_dir/gokapi
-chmod +x $install_dir/gokapi
-
 
 #=================================================
 # START SYSTEMD SERVICE
