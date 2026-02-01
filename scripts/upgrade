@@ -28,7 +28,7 @@ yunohost service add "$app" --description="Lightweight server to share files" --
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-if if ynh_app_upgrading_from_version_before 2.2.2~ynh1; then
+if ynh_app_upgrading_from_version_before 2.2.2~ynh1; then
     ynh_script_progression "Moving data directory to new location..."
     mv $install_dir/data/* $data_dir/data/
     ynh_safe_rm $install_dir/data
