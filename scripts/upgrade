@@ -29,17 +29,26 @@ yunohost service add "$app" --description="Lightweight server to share files" --
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 if ynh_app_upgrading_from_version_before 2.2.2~ynh1; then
+    ynh_script_progression "Moving database out of data_dir..."
+    mkdir -p $install_dir/database
+    mv $data_dir/* $install_dir/database/
+
     ynh_script_progression "Moving data directory to new location..."
     mv $install_dir/data/* $data_dir/data/
     ynh_safe_rm $install_dir/data
 
-    ynh_script_progression "Running intermediate upgrade step..."
+    ynh_script_progression "Updating config 1/2..."
+    ynh_replace --match="\"DatabaseUrl\": *\".*\"," --replace="\"DatabaseUrl\": \"sqlite://${install_dir}/database/gokapi.sqlite\"," --file=$install_dir/config.json
+    ynh_replace --match="\"DataDir\": *\".*\"," --replace="\"DataDir\": \"${data_dir}\"," --file=$install_dir/config.json
+
+    ynh_script_progression "Updating config 2/2..."
     ynh_setup_source --dest_dir="$install_dir" --source_id="intermediate"
     ynh_safe_rm $install_dir/gokapi
     mv $install_dir/gokapi-* $install_dir/gokapi
 
     ynh_systemctl --service="$app" --action="start" --log_path="systemd" --wait_until="Webserver can be accessed at"
     ynh_systemctl --service="$app" --action="stop" --log_path="systemd" --wait_until="Shutting down..."
+    ynh_store_file_checksum $install_dir/config.json
 fi
 
 ynh_script_progression "Upgrading source files..."
