@@ -47,7 +47,7 @@ yunohost service add "$app" --description="Lightweight server to share files" --
 ynh_script_progression "Starting $app's systemd service..."
 
 # Start a systemd service
-ynh_systemctl --service="$app" --action="start" --wait_until="Webserver can be accessed at"
+ynh_systemctl --service="$app" --action="start" --log_path="systemd" --wait_until="Webserver can be accessed at"
 
 #=================================================
 # END OF SCRIPT
