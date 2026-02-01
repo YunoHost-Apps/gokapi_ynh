@@ -9,21 +9,18 @@
     "OauthProvider": "",
     "OAuthClientId": "",
     "OAuthClientSecret": "",
-    "OauthUserScope": "",
     "OauthGroupScope": "",
     "OAuthRecheckInterval": 12,
-    "HeaderUsers": null,
     "OAuthGroups": [],
-    "OauthUsers": []
+    "OnlyRegisteredUsers": false
   },
   "Port": "127.0.0.1:__PORT__",
   "ServerUrl": "https://__DOMAIN____PATH__",
   "RedirectUrl": "https://__DOMAIN____PATH__/login",
   "PublicName": "Gokapi",
-  "DataDir": "data",
+  "DataDir": "__DATA_DIR__/",
   "DatabaseUrl": "sqlite://__DATA_DIR__/gokapi.sqlite",
-  "ConfigVersion": 21,
-  "LengthId": 15,
+  "ConfigVersion": 22,
   "MaxFileSizeMB": 102400,
   "MaxMemory": 50,
   "ChunkSize": 45,
@@ -39,4 +36,6 @@
   "PicturesAlwaysLocal": false,
   "SaveIp": false,
   "IncludeFilename": false
+
 }
+

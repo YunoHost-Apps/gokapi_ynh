@@ -4,7 +4,7 @@
 # IMPORT GENERIC HELPERS
 #=================================================
 
-source _common.sh
+
 source /usr/share/yunohost/helpers
 
 #=================================================
@@ -27,10 +27,7 @@ ynh_config_add --template="config.json" --destination="$install_dir/config.json"
 
 chown "$app:$app" "$install_dir/config.json"
 
-$install_dir/gokapi --config $install_dir/config.json --deployment-password $password
-ynh_safe_rm "$data_dir/gokapi.sqlite"
-ynh_safe_rm "$data_dir/gokapi.sqlite-shm"
-ynh_safe_rm "$data_dir/gokapi.sqlite-wal"
+ynh_exec_as_app env GOKAPI_DATA_DIR=$data_dir GOKAPI_CONFIG_DIR=$install_dir $install_dir/gokapi --config $install_dir/config.json --deployment-password $password
 
 #=================================================
 # SYSTEM CONFIGURATION
@@ -50,7 +47,7 @@ yunohost service add "$app" --description="Lightweight server to share files" --
 ynh_script_progression "Starting $app's systemd service..."
 
 # Start a systemd service
-ynh_systemctl --service="$app" --action="start"
+ynh_systemctl --service="$app" --action="start" --log_path="systemd" --wait_until="Webserver can be accessed at"
 
 #=================================================
 # END OF SCRIPT

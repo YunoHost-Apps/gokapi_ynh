@@ -4,7 +4,7 @@
 # IMPORT GENERIC HELPERS
 #=================================================
 
-source _common.sh
+
 source /usr/share/yunohost/helpers
 
 #=================================================
@@ -12,23 +12,7 @@ source /usr/share/yunohost/helpers
 #=================================================
 ynh_script_progression "Stopping $app's systemd service..."
 
-ynh_systemctl --service="$app" --action="stop"
-
-#=================================================
-# ENSURE DOWNWARD COMPATIBILITY
-#=================================================
-ynh_script_progression "Ensuring downward compatibility..."
-
-#=================================================
-# DOWNLOAD, CHECK AND UNPACK SOURCE
-#=================================================
-ynh_script_progression "Upgrading source files..."
-
-# Download, check integrity, uncompress and patch the source from manifest.toml
-ynh_setup_source --dest_dir="$install_dir" --full_replace --keep="config.json"
-
-mv $install_dir/gokapi-* $install_dir/gokapi
-chmod +x $install_dir/gokapi
+ynh_systemctl --service="$app" --action="stop" --log_path="systemd" --wait_until="Shutting down..."
 
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
@@ -42,11 +26,45 @@ ynh_config_add_systemd
 yunohost service add "$app" --description="Lightweight server to share files" --log="/var/log/$app/$app.log"
 
 #=================================================
+# DOWNLOAD, CHECK AND UNPACK SOURCE
+#=================================================
+if ynh_app_upgrading_from_version_before 2.2.2~ynh1; then
+    ynh_script_progression "Moving database out of data_dir..."
+    mkdir -p $install_dir/database
+    mv $data_dir/* $install_dir/database/
+
+    ynh_script_progression "Moving data directory to new location..."
+    mv $install_dir/data/* $data_dir/
+    ynh_safe_rm $install_dir/data
+
+    ynh_script_progression "Updating config 1/2..."
+    ynh_replace --match="\"DatabaseUrl\": *\".*\"," --replace="\"DatabaseUrl\": \"sqlite://${install_dir}/database/gokapi.sqlite\"," --file=$install_dir/config.json
+    ynh_replace --match="\"DataDir\": *\".*\"," --replace="\"DataDir\": \"${data_dir}\"," --file=$install_dir/config.json
+
+    ynh_script_progression "Updating config 2/2..."
+    ynh_setup_source --dest_dir="$install_dir" --source_id="intermediate"
+    ynh_safe_rm $install_dir/gokapi
+    mv $install_dir/gokapi-* $install_dir/gokapi
+
+    ynh_systemctl --service="$app" --action="start" --log_path="systemd" --wait_until="Webserver can be accessed at"
+    ynh_systemctl --service="$app" --action="stop" --log_path="systemd" --wait_until="Shutting down..."
+    ynh_store_file_checksum $install_dir/config.json
+fi
+
+ynh_script_progression "Upgrading source files..."
+
+# Download, check integrity, uncompress and patch the source from manifest.toml
+ynh_setup_source --dest_dir="$install_dir"
+
+ynh_safe_rm $install_dir/gokapi
+mv $install_dir/gokapi-* $install_dir/gokapi
+
+#=================================================
 # START SYSTEMD SERVICE
 #=================================================
 ynh_script_progression "Starting $app's systemd service..."
 
-ynh_systemctl --service="$app" --action="start"
+ynh_systemctl --service="$app" --action="start" --log_path="systemd" --wait_until="Webserver can be accessed at"
 
 #=================================================
 # END OF SCRIPT
