@@ -34,7 +34,7 @@ if ynh_app_upgrading_from_version_before 2.2.2~ynh1; then
     mv $data_dir/* $install_dir/database/
 
     ynh_script_progression "Moving data directory to new location..."
-    mv $install_dir/data/* $data_dir/data/
+    mv $install_dir/data/* $data_dir/
     ynh_safe_rm $install_dir/data
 
     ynh_script_progression "Updating config 1/2..."
