@@ -7,7 +7,7 @@ name = "Gokapi"
 description.en = "Lightweight server to share files"
 description.fr = "Serveur léger pour partager des fichiers"
 
-version = "2.2.2~ynh1"
+version = "2.2.3~ynh1"
 
 maintainers = ["eric_G"]
 
@@ -47,14 +47,14 @@ ram.runtime = "50M"
 [resources]
 
     [resources.sources.main]
-    amd64.url = "https://github.com/Forceu/Gokapi/releases/download/v2.2.2/gokapi-linux_amd64.zip"
-    amd64.sha256 = "4520796daa8a2445c851e46560f7294985a1b18dc53caa1b06ca46c6926c5f67"
-    i386.url = "https://github.com/Forceu/Gokapi/releases/download/v2.2.2/gokapi-linux_386.zip"
-    i386.sha256 = "6e0923b4d8c466f058c76e54f66082a15013b13e08ddf0e1684ff197d740efb8"
-    armhf.url = "https://github.com/Forceu/Gokapi/releases/download/v2.2.2/gokapi-linux_arm.zip"
-    armhf.sha256 = "98389cc219f62aeed28e317120d0a3efab9cb01285651b5ba4a2482d4af51aff"
-    arm64.url = "https://github.com/Forceu/Gokapi/releases/download/v2.2.2/gokapi-linux_arm64.zip"
-    arm64.sha256 = "369681cacf1c3b8a3a032364e59fef757ab326905a11494ba6907a2b72abf362"
+    amd64.url = "https://github.com/Forceu/Gokapi/releases/download/v2.2.3/gokapi-linux_amd64.zip"
+    amd64.sha256 = "90f3edaf2ba74e7eba4ab18d8d054e9773b207cdae92d28c41de40e967af5a15"
+    i386.url = "https://github.com/Forceu/Gokapi/releases/download/v2.2.3/gokapi-linux_386.zip"
+    i386.sha256 = "452072a602a39cb9da1db34c0bdee11434fe26021f92803c5535acdcb5ed6052"
+    armhf.url = "https://github.com/Forceu/Gokapi/releases/download/v2.2.3/gokapi-linux_arm.zip"
+    armhf.sha256 = "4a7b242d872b0104b5efacb217191a283abac4adca59baaf69b576b9e2ed8674"
+    arm64.url = "https://github.com/Forceu/Gokapi/releases/download/v2.2.3/gokapi-linux_arm64.zip"
+    arm64.sha256 = "61d98d2c8c4db262b3960f840d20add10ac90b24960297fc18c674f189cb5f5b"
 
     in_subdir = false
 
