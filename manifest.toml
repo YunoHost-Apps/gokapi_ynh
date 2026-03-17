@@ -7,7 +7,7 @@ name = "Gokapi"
 description.en = "Lightweight server to share files"
 description.fr = "Serveur léger pour partager des fichiers"
 
-version = "2.2.4~ynh1"
+version = "2.2.4~ynh2"
 
 maintainers = ["eric_G"]
 
@@ -47,22 +47,22 @@ ram.runtime = "50M"
 [resources]
 
     [resources.sources.main]
-    amd64.url = "https://github.com/Forceu/Gokapi/releases/download/v2.2.4/gokapi-linux_amd64.zip"
-    amd64.sha256 = "9a6997268993c9e018fe7632951989b4bcd9fd946404d61ae5ef05ea66dca2b9"
-    i386.url = "https://github.com/Forceu/Gokapi/releases/download/v2.2.4/gokapi-linux_386.zip"
-    i386.sha256 = "4d4453bf6787c85bf9835d863a4427ca3221ef9954d77ce539881bea66cce2d4"
-    armhf.url = "https://github.com/Forceu/Gokapi/releases/download/v2.2.4/gokapi-linux_arm.zip"
-    armhf.sha256 = "d6bbec24f3faf3d2507c1641533bfd1ac2adbfdd0e97728cf413a1f94dd0a304"
-    arm64.url = "https://github.com/Forceu/Gokapi/releases/download/v2.2.4/gokapi-linux_arm64.zip"
-    arm64.sha256 = "10e8bbc37f5024eb30ed3c72f345cce7dd1cba68f24efcff9a44aa92571d3071"
+    amd64.url = "https://github.com/Forceu/Gokapi/releases/download/v2.2.4/gokapi-2.2.4_linux-amd64.zip"
+    amd64.sha256 = "51dbf724c94f8afa0b40fb1ef63a1fe418e7996e7b9536e1f0a5da695b8e18ef"
+    i386.url = "https://github.com/Forceu/Gokapi/releases/download/v2.2.4/gokapi-2.2.4_linux-386.zip"
+    i386.sha256 = "27c03e3aa30d6c146c6675c0b23da7c63571cb08468840790c9a6e0f0ddc0969"
+    armhf.url = "https://github.com/Forceu/Gokapi/releases/download/v2.2.4/gokapi-2.2.4_linux-arm.zip"
+    armhf.sha256 = "274428207bc4c7946b03f1857d25f5ff40365f82325cf07e41bd5058dce05b72"
+    arm64.url = "https://github.com/Forceu/Gokapi/releases/download/v2.2.4/gokapi-2.2.4_linux-arm64.zip"
+    arm64.sha256 = "9f82cfb96fc48ac9bdfb94584dc6ba4648de1ac4fcd1276d2dd5a7e0f80398f7"
 
     in_subdir = false
 
     autoupdate.strategy = "latest_github_release"
-    autoupdate.asset.amd64 = "gokapi-linux_amd64\\.zip"
-    autoupdate.asset.i386 = "gokapi-linux_386\\.zip"
-    autoupdate.asset.armhf = "gokapi-linux_arm\\.zip"
-    autoupdate.asset.arm64 = "gokapi-linux_arm64\\.zip"
+    autoupdate.asset.amd64 = "^gokapi-\\d+(\\.\\d+)+_linux-amd64\\.zip"
+    autoupdate.asset.i386 = "^gokapi-\\d+(\\.\\d+)+_linux-386\\.zip"
+    autoupdate.asset.armhf = "^gokapi-\\d+(\\.\\d+)+_linux-arm\\.zip"
+    autoupdate.asset.arm64 = "^gokapi-\\d+(\\.\\d+)+_linux-arm64\\.zip"
 
     [resources.sources.intermediate]
     amd64.url = "https://github.com/Forceu/Gokapi/releases/download/v2.0.0/gokapi-linux_amd64.zip"
