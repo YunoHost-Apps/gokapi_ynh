@@ -10,7 +10,7 @@ It shall NOT be edited by hand.
 
 Lightweight server to share files
 
-[![Version: 2.2.4~ynh1](https://img.shields.io/badge/Version-2.2.4~ynh1-rgb(18,138,11)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/gokapi/)
+[![Version: 2.2.4~ynh2](https://img.shields.io/badge/Version-2.2.4~ynh2-rgb(18,138,11)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/gokapi/)
 
 <div align="center">
 <a href="https://apps.yunohost.org/app/gokapi"><img height="100px" src="https://github.com/YunoHost/yunohost-artwork/raw/refs/heads/main/badges/neopossum-badges/badge_more_info_on_the_appstore.svg"/></a>
