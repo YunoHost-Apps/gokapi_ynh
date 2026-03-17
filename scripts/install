@@ -15,7 +15,6 @@ ynh_script_progression "Setting up source files..."
 # Download, check integrity, uncompress and patch the source from manifest.toml
 ynh_setup_source --dest_dir="$install_dir"
 
-mv $install_dir/gokapi-* $install_dir/gokapi
 chmod +x $install_dir/gokapi
 
 #=================================================
