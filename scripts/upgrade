@@ -56,9 +56,6 @@ ynh_script_progression "Upgrading source files..."
 # Download, check integrity, uncompress and patch the source from manifest.toml
 ynh_setup_source --dest_dir="$install_dir"
 
-ynh_safe_rm $install_dir/gokapi
-mv $install_dir/gokapi-* $install_dir/gokapi
-
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
